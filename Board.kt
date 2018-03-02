@@ -1,11 +1,6 @@
 package com.zetcode
 
-import java.awt.Color
-import java.awt.Dimension
-import java.awt.Font
-import java.awt.Graphics
-import java.awt.Image
-import java.awt.Toolkit
+import java.awt.*
 import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
 import java.awt.event.KeyAdapter
@@ -14,6 +9,7 @@ import java.awt.event.KeyEvent
 import javax.swing.ImageIcon
 import javax.swing.JPanel
 import javax.swing.Timer
+
 
 class Board : JPanel(), ActionListener {
 
@@ -113,6 +109,14 @@ class Board : JPanel(), ActionListener {
         val msg = "Game Over"
         val small = Font("Helvetica", Font.BOLD, 14)
         val fontMetrics = getFontMetrics(small)
+
+        val rh = RenderingHints(
+                RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON)
+
+        rh[RenderingHints.KEY_RENDERING] = RenderingHints.VALUE_RENDER_QUALITY
+
+        (g as Graphics2D).setRenderingHints(rh)
 
         g.color = Color.white
         g.font = small
